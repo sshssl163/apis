@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="UMu-vo-Q3B">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" id="kTu-l5-fKK" customClass="ViewController" customModule="AdflyDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="crw-T4-kRw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2v-p6-RTY">
+                                <rect key="frame" x="137.5" y="210" width="100" height="30"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="7JN-cH-r75"/>
+                                </constraints>
+                                <state key="normal" title="Request AD"/>
+                                <connections>
+                                    <action selector="requestAdAction:" destination="kTu-l5-fKK" eventType="touchUpInside" id="AbW-3Z-ilH"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ehl-gH-hwP">
+                                <rect key="frame" x="19" y="270" width="337.5" height="180"/>
+                                <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ehl-gH-hwP" secondAttribute="height" multiplier="15:8" id="pEU-Il-bHz"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="The-td-dQK">
+                                <rect key="frame" x="137.5" y="471" width="100" height="30"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="DiP-Fl-lFb"/>
+                                </constraints>
+                                <state key="normal" title="Clean Log"/>
+                                <connections>
+                                    <action selector="cleanLogAction:" destination="kTu-l5-fKK" eventType="touchUpInside" id="m3l-tV-YTy"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LCt-R6-26G">
+                                <rect key="frame" x="37.5" y="30" width="300" height="160"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="LCt-R6-26G" secondAttribute="height" multiplier="15:8" id="nQi-KW-gAc"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="The-td-dQK" firstAttribute="centerX" secondItem="ApK-NC-dNb" secondAttribute="centerX" id="0cE-ZO-Rfb"/>
+                            <constraint firstItem="Ehl-gH-hwP" firstAttribute="centerX" secondItem="ApK-NC-dNb" secondAttribute="centerX" id="6TX-zd-1bC"/>
+                            <constraint firstItem="Ehl-gH-hwP" firstAttribute="width" secondItem="crw-T4-kRw" secondAttribute="width" multiplier="0.9" id="Ao4-n9-e1m"/>
+                            <constraint firstItem="Ehl-gH-hwP" firstAttribute="top" secondItem="a2v-p6-RTY" secondAttribute="bottom" constant="30" id="G7W-Qg-RLs"/>
+                            <constraint firstItem="LCt-R6-26G" firstAttribute="top" secondItem="ApK-NC-dNb" secondAttribute="top" constant="30" id="O0p-7j-w3c"/>
+                            <constraint firstItem="ApK-NC-dNb" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="The-td-dQK" secondAttribute="bottom" constant="93" id="O5b-cI-lFN"/>
+                            <constraint firstItem="a2v-p6-RTY" firstAttribute="centerX" secondItem="ApK-NC-dNb" secondAttribute="centerX" id="Vg1-iZ-YKg"/>
+                            <constraint firstItem="The-td-dQK" firstAttribute="top" secondItem="Ehl-gH-hwP" secondAttribute="bottom" constant="21" id="htF-Q7-28C"/>
+                            <constraint firstItem="a2v-p6-RTY" firstAttribute="top" secondItem="LCt-R6-26G" secondAttribute="bottom" constant="20" id="kVt-lP-YZH"/>
+                            <constraint firstItem="LCt-R6-26G" firstAttribute="centerX" secondItem="ApK-NC-dNb" secondAttribute="centerX" id="yBd-8o-90y"/>
+                            <constraint firstItem="LCt-R6-26G" firstAttribute="width" secondItem="crw-T4-kRw" secondAttribute="width" multiplier="0.8" id="ytL-Bq-JH2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ApK-NC-dNb"/>
+                    </view>
+                    <connections>
+                        <outlet property="adImg" destination="LCt-R6-26G" id="HLQ-7y-9Ru"/>
+                        <outlet property="cleanLogBtn" destination="The-td-dQK" id="sOO-uE-2Ae"/>
+                        <outlet property="logTextView" destination="Ehl-gH-hwP" id="wbh-CQ-RFR"/>
+                        <outlet property="requestAdBtn" destination="a2v-p6-RTY" id="8ob-zv-O4D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QUV-ZK-3bh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-532" y="29"/>
+        </scene>
+    </scenes>
+</document>

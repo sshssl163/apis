@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (4.9.1)
+  - CryptoSwift (0.8.3)
+  - GZIP (1.2.3)
+  - ObjectMapper (3.5.1)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
+  - SwiftyJSON (5.0.0)
+
+DEPENDENCIES:
+  - Alamofire (= 4.9.1)
+  - CryptoSwift (~> 0.8.3)
+  - GZIP (~> 1.2)
+  - ObjectMapper
+  - SDWebImage
+  - SwiftyJSON
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - CryptoSwift
+    - GZIP
+    - ObjectMapper
+    - SDWebImage
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  CryptoSwift: 033efc3523865d19cc6ab6612fa17a62613b5dfa
+  GZIP: af5c90ef903776a7e9afe6ebebd794a84a2929d4
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+
+PODFILE CHECKSUM: 8833d66dcba2a1a910967964052be2c4b4eb9cab
+
+COCOAPODS: 1.8.4
