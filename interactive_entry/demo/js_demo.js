@@ -20,8 +20,8 @@ function generateGzip(input) {
 	});
 }
 
-function generateSignature(ci, deviceId, nonce, timestamp) {
-	const content = `appKey=${APP_KEY},appSecret=${APP_SECRET},ci=${ci},deviceId=${deviceId},nonce=${nonce},timestamp=${timestamp}`;
+function generateSignature(ci, deviceId, nonce, soltId, timestamp) {
+	const content = `appKey=${APP_KEY},appSecret=${APP_SECRET},ci=${ci},deviceId=${deviceId},nonce=${nonce},soltId=${soltId},timestamp=${timestamp}`;
 	return sha1(content).toString();
 }
 
@@ -32,14 +32,17 @@ function request() {
 	clientInfo.os = 'android_6.0.1';
 	clientInfo.network = 'wifi';
 
+
 	return generateGzip(JSON.stringify(clientInfo))
 		.then(compressedCI => {
 			const now = new Date().getTime();
 			const nonce = '123456'; // random 6 bytes
+			const soltId = 1
 			const signature = generateSignature(
 				compressedCI,
 				advertisingId,
 				nonce,
+				soltId,
 				now,
 			);
 
@@ -50,6 +53,7 @@ function request() {
 				`ci=${encodeURIComponent(compressedCI)}&` +
 				`deviceId=${encodeURIComponent(advertisingId)}&` +
 				`nonce=${encodeURIComponent(nonce)}&` +
+				`soltId=${soltId}&` +
 				`timestamp=${now}&` +
 				`signature=${signature}`;
 
