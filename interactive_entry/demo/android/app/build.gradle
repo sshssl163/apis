@@ -1,0 +1,93 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.0"
+    defaultConfig {
+        applicationId "com.xb.interactiveadapplication"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+//    // 对每个variant变体的flavor组合连接，最终生成value用于上报
+//    def flavorGroupValue = ""
+//    variant.productFlavors.each { flavor ->
+//        flavorGroupValue += flavorServerKeyValue[flavor.name]
+//    }
+//    buildConfigField 'String', 'FLAVOR_GROUP_VALUE', "\"" + flavorGroupValue + "\""
+
+        def names = variant.productFlavors*.name
+        if (names.contains("inner")) {
+            buildConfigField 'com.xb.interactiveadapplication.net.StethoHelper', 'STETHO', 'new com.xb.topnews.InnerStethoHelper()'
+            // 是否开启webview调试模式
+            buildConfigField 'boolean', 'WEB_CONTENTS_DEBUGGING_ENABLED', 'true'
+        } else
+        if (variant.buildType.name == "debug") {
+            buildConfigField 'com.xb.interactiveadapplication.net.StethoHelper', 'STETHO', 'new com.xb.topnews.DebugStethoHelper()'
+            buildConfigField 'boolean', 'WEB_CONTENTS_DEBUGGING_ENABLED', 'true'
+        } else if (variant.buildType.name == "release") {
+            buildConfigField 'com.xb.interactiveadapplication.net.StethoHelper', 'STETHO', 'new com.xb.topnews.FakeStethoHelper()'
+            buildConfigField 'boolean', 'WEB_CONTENTS_DEBUGGING_ENABLED', 'false'
+        }
+
+        // 修改release构建生成包名
+//        variant.outputs.all { output ->
+//            if (outputFileName.contains('release')) {
+//                outputFileName = outputFileName
+//                        .replace(".apk", "-" + defaultConfig.versionName + "-build" + defaultConfig.versionCode
+//                                + "-" + getWorkingBranch() + "-" + getCommitId() + ".apk")
+//                        .replace("app", rootProject.name)
+//            }
+//        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.zhy:okhttputils:2.6.2'
+    implementation "com.squareup.okhttp3:okhttp:3.4.1"
+    // gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'androidx.work:work-runtime:2.3.3'
+
+
+    // fresco
+    implementation "com.facebook.fresco:fresco:1.13.0"
+    implementation "com.facebook.fresco:animated-gif:1.13.0"
+    implementation "com.facebook.fresco:animated-webp:1.13.0"
+    implementation "com.facebook.fresco:webpsupport:1.13.0"
+    implementation "com.facebook.fresco:imagepipeline:1.13.0"
+    implementation "com.facebook.fresco:imagepipeline-okhttp3:1.13.0"
+    implementation "com.facebook.fresco:drawee:1.13.0"
+
+    // rxjava
+    implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+
+//    implementation 'com.xb.library:analytics:1.2'
+
+//    debugImplementation(name: 'encrypt-debug-1.0.0', ext: 'aar')
+//    releaseImplementation(name: 'encrypt-release-1.0.0', ext: 'aar')
+    implementation files('libs/encrypt-debug-1.0.0.aar')
+//    implementation files('libs/encrypt-debug-1.0.0.aar')
+
+
+    // stetho
+    debugImplementation 'com.facebook.stetho:stetho:1.5.0'
+    debugImplementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+}
