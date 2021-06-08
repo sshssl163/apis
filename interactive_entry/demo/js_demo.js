@@ -31,6 +31,7 @@ function request() {
 	clientInfo.idfa = idfa; // ios
 	clientInfo.os = 'android_6.0.1';
 	clientInfo.network = 'wifi';
+    clientInfo.widgetId = '851';
 
 
 	return generateGzip(JSON.stringify(clientInfo))
