@@ -42,6 +42,30 @@ Appsecret: 9a19fab1935aba50f1fd5a6bdb442172
 ### 计算signature
 
 ```golang
+import (
+	"crypto/sha1"
+	"fmt"
+	"net/url"
+	"sort"
+	"strings"
+
+	"github.com/xbonlinenet/goup/frame/log"
+	"github.com/xbonlinenet/goup/frame/util"
+)
+
+type Pair struct {
+	First  string
+	Second string
+}
+
+type Params []Pair
+
+func (a Params) Len() int           { return len(a) }
+func (a Params) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a Params) Less(i, j int) bool { return a[i].First < a[j].First }
+
+var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+
 func CalcSignature(querys map[string]string, secret string) string {
 	var params = Params{Pair{First: "appSecret", Second: secret}}
 	for k, value := range querys {
@@ -78,17 +102,11 @@ func CalcSignature(querys map[string]string, secret string) string {
 
 ### 获取最终参数
 ```golang
-
-type Pair struct {
-	First  string
-	Second string
-}
-
-type Params []Pair
-
-func (a Params) Len() int           { return len(a) }
-func (a Params) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
-func (a Params) Less(i, j int) bool { return a[i].First < a[j].First }
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
@@ -100,7 +118,7 @@ func randSeq(n int) string {
 	return string(b)
 }
 
-func formatParams(querys map[string]string, key, secret string, deviceId string) map[string]string {
+func FormatParams(querys map[string]string, key, secret string, deviceId string) map[string]string {
 	querys["appKey"] = key
 	querys["deviceId"] = deviceId
 	querys["nonce"] = randSeq(6)
